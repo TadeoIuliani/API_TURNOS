@@ -1,6 +1,7 @@
 const db = require("../data/db")
 
 const {DataTypes} = require ("sequelize")
+const userModel = require("./userModel")
 
 const appointmentModel = db.define("appointment", {
     id: {
@@ -25,5 +26,10 @@ const appointmentModel = db.define("appointment", {
 {
     timestamps: true
 })
+
+// Relación: un turno tiene un usuario, y un usuario puede tener varios turnos.
+appointmentModel.belongsTo(userModel, { foreignKey: 'userId' });  // Un turno tiene un usuario (usuarioId como clave foránea)
+userModel.hasMany(appointmentModel, { foreignKey: 'userId' });   // Un usuario puede tener varios turnos
+
 
 module.exports = appointmentModel;

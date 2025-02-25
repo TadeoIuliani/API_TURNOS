@@ -1,6 +1,7 @@
 const express = require("express")
 const path = require("path")
 const db = require("./data/db")
+
 require('dotenv').config();
 
 
@@ -10,6 +11,7 @@ console.log('Puerto desde .env:', process.env.PORT);
 const app = express()
 
 const appointmentsRouter = require("./routes/appointmentsRouter")
+const usersRouter = require("./routes/usersRouter")
 
 app.use(express.json()) //analiza los request
 
