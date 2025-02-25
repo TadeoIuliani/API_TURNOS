@@ -29,4 +29,44 @@ const getAppointments = async (req,res) =>{
     }
 }
 
-module.exports = {getAppointments}
+const postAppointments = async(req,res)=>{
+    try {
+        await appointmentModel.create(req.body)
+        res.status(201).json("Registro exitoso")
+    } catch (error) {
+        res.status(500).json({message:error.message})
+    }
+};
+
+const deleteAppointments = async(req,res)=>{
+    try {
+        await appointmentModel.destroy({
+            where:{id:req.params.id}
+        })
+        res.status(200).json("Registro elimnado")
+    } catch (error) {
+        res.status(500).json({message:error.message})
+    }
+};
+
+const getAppointmentId =async (req,res)=>{
+    try {
+        const appointment = await appointmentModel.findByPk(req.params.id)
+        res.status(200).json(appointment)
+    } catch (error) {
+        res.status(500).json({message:error.message})
+    }
+}
+
+const putAppointmentsId = async (req,res)=>{
+    try {
+        await appointmentModel.update(req.body, {
+            where:{id:req.params.id}
+        })
+        res.status(200).json("Registro actualizado");
+    } catch (error) {
+        res.status(500).json({message:error.message})
+    }
+}
+
+module.exports = {getAppointments, postAppointments, deleteAppointments, getAppointmentId, putAppointmentsId}

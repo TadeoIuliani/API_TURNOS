@@ -9,9 +9,6 @@ console.log('Puerto desde .env:', process.env.PORT);
 
 const app = express()
 
-// const productosRouter = require("./routes/productosRouter")
-// const vendedorRouter = require("./routes/vendedoresRouter")
-
 const appointmentsRouter = require("./routes/appointmentsRouter")
 
 app.use(express.json()) //analiza los request
@@ -22,7 +19,6 @@ app.use(express.json()) //analiza los request
 
 
 app.use("/appointments", appointmentsRouter)
-// app.use("/vendedores", vendedorRouter)
 
 const conexionDB = async ()=>{
     try {
@@ -39,6 +35,5 @@ app.listen(port, ()=>{
     conexionDB()
     console.log(`conexion exitosa ${port}`);
     // console.log(`Documentación disponible en http://localhost:${port}/api-docs`);
-    /* console.log('Puerto cargado desde .env:', process.env.PORT); */
 
 })
