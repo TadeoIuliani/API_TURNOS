@@ -1,6 +1,11 @@
 const { where } = require("sequelize");
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+require('dotenv').config(); 
 const appointmentModel = require("../models/appointmentModel")
 const userModel = require("../models/userModel")
+
+
 
 const postRegister = async (req,res) =>{
     const { name, email, password, role } = req.body;
@@ -10,7 +15,6 @@ const postRegister = async (req,res) =>{
         if(!userExists){
             return res.status(400).json({ message: "El usuario ya existe" });
         }
-
         // Encriptar la contraseña
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -27,6 +31,29 @@ const postRegister = async (req,res) =>{
     }
 }
 
-module.exports = {postRegister}
+
+const postLogin = async (req,res) =>{
+
+    const { email, password } = req.body;
+
+    // Buscar al usuario en la base de datos
+    const user = await userModel.findOne({ where: { email } });
+    if (!user) {
+        return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect) {
+        return res.status(401).json({ message: 'Contraseña incorrecta' });
+    }
+
+    const token = jwt.sign(
+        {id: user.id, role: user.role}, process.env.SECRET_KEY, { expiresIn: '1h' }  
+    );
+    
+    res.status(201).json({token : token});
+}
+
+module.exports = {postRegister, postLogin}
 
 

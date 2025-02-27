@@ -21,6 +21,7 @@ app.use(express.json()) //analiza los request
 
 
 app.use("/appointments", appointmentsRouter)
+app.use("/user", usersRouter)
 
 const conexionDB = async ()=>{
     try {

@@ -29,7 +29,7 @@ const validateGetAppointmentId = [
 const validatePostAppointment = [
     body('date').isISO8601().withMessage('La fecha debe estar en formato ISO8601'),
     body('state').isIn(['pendiente', 'confirmado', 'cancelado']).withMessage('Estado inválido'),
-    // body('patientId').isInt({ min: 1 }).withMessage('El ID del paciente debe ser un número entero positivo'),
+    body('userId').isInt({ min: 1 }).withMessage('El ID del usuario debe ser un número entero positivo'),
     (req, res, next) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -54,7 +54,7 @@ const validatePutAppointment = [
     param('id').isInt({ min: 1 }).withMessage('El ID debe ser un número entero positivo'),
     body('date').optional().isISO8601().withMessage('La fecha debe estar en formato ISO8601'),
     body('state').optional().isIn(['pendiente', 'confirmado', 'cancelado']).withMessage('Estado inválido'),
-    // body('patientId').optional().isInt({ min: 1 }).withMessage('El ID del paciente debe ser un número entero positivo'),
+    body('userId').optional().isInt({ min: 1 }).withMessage('El ID del usuario debe ser un número entero positivo'),
     (req, res, next) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
