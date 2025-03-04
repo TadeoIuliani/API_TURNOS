@@ -1,5 +1,5 @@
-**API de Gestión de Turnos y Usuarios
-Este proyecto consiste en una API RESTful para gestionar turnos y usuarios, con las siguientes características clave:**
+**API de Gestión de Turnos y Usuarios**
+Este proyecto consiste en una API RESTful para gestionar turnos y usuarios, con las siguientes características clave:
 
 - CRUD de Turnos y Usuarios: Permite crear, leer, actualizar y eliminar turnos y usuarios.
 - Autenticación JWT: Implementación de autenticación segura con JSON Web Tokens.
