@@ -1,5 +1,12 @@
-# API_TURNOS
-API REST para manejo de turnos y usuarios
+API de Gestión de Turnos y Usuarios
+Este proyecto consiste en una API RESTful para gestionar turnos y usuarios, con las siguientes características clave:
+
+- CRUD de Turnos y Usuarios: Permite crear, leer, actualizar y eliminar turnos y usuarios.
+- Autenticación JWT: Implementación de autenticación segura con JSON Web Tokens.
+- Roles de Usuario: Gestión de roles para controlar el acceso a recursos protegidos.
+- Conexión con MySQL: Utiliza Sequelize como ORM para la gestión de datos en una base de datos MySQL.
+- Validación de Datos: Validación de entradas con Express-validator para garantizar la integridad y seguridad de los datos.
+
 
 
 🚀 Configuración y uso
