@@ -31,6 +31,4 @@ const conexionDB = async ()=>{
 app.listen(port, ()=>{
     conexionDB()
     console.log(`conexion exitosa ${port}`);
-    console.log(`Documentación disponible en http://localhost:${port}/api-docs`);
-
 })
