@@ -16,7 +16,7 @@ git clone https://github.com/tu-usuario/nombre-del-repositorio.git
 cd nombre-del-repositorio
 ```
 
-### 3. **Instalar Dependecias de Node.js
+### 3. Instalar Dependecias de Node.js
 El comando en Bash:
 ```bash
 npm install
