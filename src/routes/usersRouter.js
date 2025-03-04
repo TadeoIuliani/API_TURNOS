@@ -6,7 +6,6 @@ const {postRegister, postLogin} = require("../controllers/usersController")
 
 const router = express.Router()
 
-
 router.post("/register", ValidateUser, postRegister)
 router.post("/login", postLogin)
 

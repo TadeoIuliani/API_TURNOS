@@ -1,0 +1,6 @@
+# Ignorar archivos y carpetas locales
+.git
+.env
+node_modules
+*.log
+*.md

@@ -1,8 +1,7 @@
+require('dotenv').config(); 
 const { where } = require("sequelize");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-require('dotenv').config(); 
-const appointmentModel = require("../models/appointmentModel")
 const userModel = require("../models/userModel")
 
 
@@ -12,7 +11,7 @@ const postRegister = async (req,res) =>{
     try {
         // Verificar si el usuario ya existe
         const userExists = await userModel.findOne({ where: { email } });
-        if(!userExists){
+        if(userExists){
             return res.status(400).json({ message: "El usuario ya existe" });
         }
         // Encriptar la contraseña
@@ -35,7 +34,6 @@ const postRegister = async (req,res) =>{
 const postLogin = async (req,res) =>{
 
     const { email, password } = req.body;
-
     // Buscar al usuario en la base de datos
     const user = await userModel.findOne({ where: { email } });
     if (!user) {
@@ -48,7 +46,7 @@ const postLogin = async (req,res) =>{
     }
 
     const token = jwt.sign(
-        {id: user.id, role: user.role}, process.env.SECRET_KEY, { expiresIn: '1h' }  
+        {id: user.id, role: user.role}, process.env.SECRET_KEY, { expiresIn: '2h' }  
     );
     
     res.status(201).json({token : token});
